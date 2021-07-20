@@ -1,11 +1,13 @@
 import mongoose from 'mongoose'
-import { messageSchema } from './message'
+import { messageSchema } from './message.js'
 
 export {
   Profile
 }
 
-const profileSchema = new mongoose.Schema({
+const Schema = mongoose.Schema
+
+const profileSchema = new Schema({
   name: String,
   avatar: String,
   messages: [messageSchema],

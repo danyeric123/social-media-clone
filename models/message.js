@@ -5,7 +5,9 @@ export {
   messageSchema
 }
 
-const replySchema = new mongoose.Schema({
+const Schema = mongoose.Schema
+
+const replySchema = new Schema({
   text: String,
   author: {
     type: Schema.Types.ObjectId,
@@ -13,7 +15,7 @@ const replySchema = new mongoose.Schema({
   }
 })
 
-const messageSchema = new mongoose.Schema({
+const messageSchema = new Schema({
   text: String,
   author: {
     type: Schema.Types.ObjectId,
