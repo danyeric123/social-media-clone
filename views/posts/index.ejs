@@ -1,0 +1,60 @@
+<%- include('../partials/html-head') %>
+<%- include('../partials/nav') %>
+
+<main>
+  <% if(user){ %> 
+  <form action="/posts" method="POST">
+    <h2>Write a Post</h2>
+    <div class="mb-3 mx-5">
+      <label for="post-content" class="form-label">Post</label>
+      <textarea class="form-control" name="text" id="post-content" rows="5"></textarea>
+    </div>
+    <div class="mb-3 mx-5">
+      <label for="title-input" class="form-label">Categories</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="title-input"
+        name="category" 
+        placeholder="Choose a category"
+      >
+    </div>
+    <button class="btn btn-primary ms-5" type="submit">Post</button>
+    </form>
+    <% } %> 
+    <% posts.forEach((post, idx) => { %>
+      <section>
+        <div>
+          <a 
+              href="/profiles/<%= post.author._id %>"
+              class="text-decoration-none text-light"
+            >
+              <%= post.author.name %>
+              <img
+                src="<%= post.author.avatar %>"
+                class="img-fluid rounded-circle"
+                alt="<%= post.author.name %>'s avatar"
+                height="35"
+                width="35"
+              />
+          </a>
+          <a 
+            href="/posts/<%= post._id %>" 
+            class=""
+          >
+            <p class=""><%= post.text %></p>
+          </a>
+          <p class="fs-7 fst-italic">
+            on <%= post.createdAt.toLocaleDateString() %>
+          </p>
+          <%# Put something here for categories %> 
+
+          <%# Put something here to check if logged in and if so, add reply %> 
+
+
+        </div>
+      </section>
+    <% }) %>
+  </main>
+  <%- include('../partials/footer') %>
+  
