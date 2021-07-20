@@ -1,29 +1,9 @@
 import mongoose from 'mongoose'
+import { messageSchema } from './message'
 
 export {
-  Profile,
-  Message
+  Profile
 }
-
-const replySchema = new mongoose.Schema({
-  text: String,
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: 'Profile'
-  }
-})
-
-const messageSchema = new mongoose.Schema({
-  text: String,
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: 'Profile'
-  },
-  category: String,
-  replies: [replySchema]
-},{
-  timestamps: true
-})
 
 const profileSchema = new mongoose.Schema({
   name: String,
@@ -36,4 +16,3 @@ const profileSchema = new mongoose.Schema({
 })
 
 const Profile = mongoose.model('Profile', profileSchema)
-const Message = mongoose.model('Message', messageSchema)
