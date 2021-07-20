@@ -6,5 +6,5 @@ export {
 
 const router = Router()
 router.get('/', function (req, res) {
-  res.redirect('messages')
+  res.redirect('/messages')
 })
