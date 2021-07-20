@@ -7,6 +7,7 @@ import session from 'express-session'
 import logger from 'morgan'
 import methodOverride from 'method-override'
 import passport from 'passport'
+import * as middleware  from './middleware/middleware.js'
 
 // create the express app
 const app = express()
@@ -20,6 +21,8 @@ import('./config/passport.js')
 // require routes
 import { router as indexRouter } from './routes/index.js'
 import { router as authRouter } from './routes/auth.js'
+import { router as profilesRouter } from './routes/profiles.js'
+import { router as postsRouter } from './routes/posts.js'
 
 // view engine setup
 app.set(
@@ -55,9 +58,14 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+// custom middleware
+app.use(middleware.passUserToView)
+
 // router middleware
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
+app.use('/profiles', profilesRouter)
+app.use('/posts', postsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -66,7 +74,7 @@ app.use(function (req, res, next) {
 
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
-  res.locals.message = err.message
+  res.locals.post = err.post
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
   // render the error page

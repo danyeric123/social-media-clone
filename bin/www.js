@@ -85,7 +85,7 @@ function onError(error) {
 
   const bind = typeof port === 'string'? 'Pipe ' + port : 'Port ' + port
 
-  // handle specific listen errors with friendly messages
+  // handle specific listen errors with friendly posts
   switch (error.code) {
     case 'EACCES':
       console.error(bind + ' requires elevated privileges')

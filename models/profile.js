@@ -1,5 +1,5 @@
 import mongoose from 'mongoose'
-import { messageSchema } from './message.js'
+import { Post } from './post.js'
 
 export {
   Profile
@@ -10,7 +10,7 @@ const Schema = mongoose.Schema
 const profileSchema = new Schema({
   name: String,
   avatar: String,
-  messages: [messageSchema],
+  posts: [{ type: Schema.Types.ObjectId, ref: "Post"}],
   bio: String,
   friends: [{ type: Schema.Types.ObjectId, ref: "Profile"}]
 }, {

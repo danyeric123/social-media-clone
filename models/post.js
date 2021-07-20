@@ -1,8 +1,7 @@
 import mongoose from 'mongoose'
 
 export {
-  Message,
-  messageSchema
+  Post,
 }
 
 const Schema = mongoose.Schema
@@ -15,7 +14,7 @@ const replySchema = new Schema({
   }
 })
 
-const messageSchema = new Schema({
+const postSchema = new Schema({
   text: String,
   author: {
     type: Schema.Types.ObjectId,
@@ -27,4 +26,4 @@ const messageSchema = new Schema({
   timestamps: true
 })
 
-const Message = mongoose.model('Message', messageSchema)
+const Post = mongoose.model('Post', postSchema)

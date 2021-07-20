@@ -1,9 +1,74 @@
-  <% if (!user) { %>
-    <link rel="stylesheet" href="/stylesheets/siwg.css">
-  <% } %>
+<% if (!user) { %>
+  <link rel="stylesheet" href="/stylesheets/siwg.css">
+<% } %>
 </head>
 <body>
-  <nav>
+  <nav class="container">
+    <div
+      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+    >
+      <ul
+        class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0 justify-content-center"
+      >
+      <li class="d-flex align-items-center ms-3 mb-2 mb-lg-0">
+        <a href="/profiles" class="text-decoration-none">
+          View Users
+        </a>
+      </li>
+      <li class="d-flex align-items-center ms-3 mb-2 mb-lg-0">
+        <a href="/posts" class="text-decoration-none">
+          All Posts
+        </a>
+      </li>
+      <% if (user) { %>
+        <li class="d-flex align-items-center ms-3 mb-2 mb-lg-0">
+          <a href="/chatroom" class="text-decoration-none">
+            Chat Room
+          </a>
+        </li>
+      <% } %>
+    </ul>
+    <form action="/profiles/search" method="POST" class="d-flex align-items-center me-3">
+      <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search User">
+    </form>
+    <div class="text-end d-flex align-items-center">
+      <% if (user) { %>
+        <div id="profile-dropdown" class="dropdown text-end">
+          <a 
+            id="dropdownUser"
+            href="#"
+            class="d-block link-light text-decoration-none"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <% if(user?.profile.avatar) {%>
+              <img 
+                class="rounded-circle avatar-img"
+                src="<%= user.profile.avatar %>" 
+                alt="Your avatar"
+              >
+            <% } else { %>
+              <img
+                class="avatar-img"
+                src="/images/icons/user-small.png" 
+                alt="A placeholder avatar"
+              >
+            <% } %> 
+          </a>
+          <ul 
+            class="dropdown-menu bg-secondary" 
+            aria-labelledby="dropdownUser"
+          >
+            <li>
+              <a 
+                href="/profiles/<%= user.profile._id %>" 
+                class="dropdown-item bg-secondary text-white"
+              >
+                My Profile
+              </a>
+            </li>
+            <li><hr class="dropdown-divider bg-secondary text-white"></li>
+            <% } %> 
     <% if (user) { %>
       <a href="/auth/logout">
         <button type="submit">Logout</button>
