@@ -81,7 +81,19 @@ function reply(req, res) {
 }
 
 function deletePost(req,res){
-
+  Profile.findById(req.params.profileId)
+  .then((profile) => {
+    profile.posts.remove({_id: req.params.postId})
+    profile.save()
+    Post.findOneAndDelete({_id: req.params.postId})
+    .then(() => {
+      res.redirect(`/posts`)
+    })
+  })
+  .catch(err=>{
+    console.log(err)
+    res.redirect('/posts')
+  })
 }
 
 function edit(req, res) {

@@ -1,0 +1,74 @@
+<% posts.forEach((post, idx) => { %>
+      
+  <div class="col d-flex justify-content-center">
+  <div 
+    class="card text-center border-primary mb-3"
+    style="width: fit-content;"
+    >
+    <% if(post.author.avatar){ %> 
+      <div class="card-header">
+        <a 
+          href="/profiles/<%= post.author._id %>"
+          class="text-decoration-none"
+        >
+          <%= post.author.name %>
+          <img
+            src="<%= post.author.avatar %>"
+            class="img-fluid rounded-circle"
+            alt="<%= post.author.name %>'s avatar"
+            height="35"
+            width="35"
+          />
+      </a>
+      </div>
+      <% } %> 
+      <a 
+        href="/posts/<%= post._id %>" 
+        class="card-text text-primary text-decoration-none"
+      >
+        <p class=""><%= post.text %></p>
+      </a>
+      <p class="text-muted">
+        on <%= post.createdAt.toLocaleDateString() %>
+      </p>
+      <%# Put something here for categories %> 
+      <p>
+        <span class="text-muted">Categories: </span>
+          <% post.categories.forEach((category,index) => { %>
+            <% if(index>0) {%> 
+              ,
+              <% } %> 
+            <a 
+              href="#"
+              class=""
+            >
+            <%= category %> 
+          </a>
+          <% }); %>
+      </p>
+      <% if (post.author._id.equals(user.profile._id)) { %>
+      <form 
+        action="/posts/<%= post._id %>/profile/<%= post.author._id %>?_method=DELETE"
+        class="delete-form align"
+        role="button" 
+        method="POST"
+      >
+        <button class="btn btn-outline-danger" type="submit">X</button>
+      </form>
+      <a 
+        class="btn btn-warning"
+        role="button" 
+        href="/posts/<%= post._id %>/edit"
+        >
+          Edit
+      </a>
+      <% } %> 
+
+      <%# Put something here to check if logged in and if so, add reply %> 
+
+
+    </div>
+    </div>
+
+
+  <% }) %>

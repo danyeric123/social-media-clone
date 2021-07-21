@@ -98,24 +98,10 @@
         <% }) %>
       </div>
       <h2 class="mb-3"><%= profile.name %>'s posts</h2>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g5 px-4 align-middle">
-        <% posts.forEach(post => { %>
-          <div class="col align-middle">
-            <div class="card bg-primary mb-3">
-              <div class="card-body">
-                <a 
-                  href="/posts/<%= post._id %>" 
-                >
-                <p class="card-title fs-4 text-light"><%= post.text %></p>
-                <p class="text-muted">
-                  Posted on: <%= post.createdAt.toLocaleDateString() %>
-                </p>
-                </a>
-              </div>
-            </div>
-          </div>
-        <% }) %>
+        <%- include('../partials/postsShow') %> 
+        
       </div>
     </div>
   </section>
   </main>
+  <%- include('../partials/footer') %>

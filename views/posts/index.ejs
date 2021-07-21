@@ -1,9 +1,9 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<main>
+<main class="container">
   <% if(user){ %> 
-    <div class="card d-flex flex-column" style="width: 40rem;">
+    <div class="container">
       <h2 class="card-header">Write a Post</h2>
       <form action="/posts" method="POST" class="container d-flex flex-column">
     
@@ -27,78 +27,7 @@
     <% } %> 
     <section>
     <div class="container py-5 px-3">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g5 px-sm-5 px-4">
-    <% posts.forEach((post, idx) => { %>
-      
-        <div class="col">
-        <div 
-        class="card text-center bg-light mb-3"
-        >
-          <div class="card-header">
-            <a 
-              href="/profiles/<%= post.author._id %>"
-              class="text-decoration-none"
-            >
-              <%= post.author.name %>
-              <img
-                src="<%= post.author.avatar %>"
-                class="img-fluid rounded-circle"
-                alt="<%= post.author.name %>'s avatar"
-                height="35"
-                width="35"
-              />
-           </a>
-          </div>
-          <a 
-            href="/posts/<%= post._id %>" 
-            class="card-text text-decoration-none"
-          >
-            <p class=""><%= post.text %></p>
-          </a>
-          <p class="text-muted">
-            on <%= post.createdAt.toLocaleDateString() %>
-          </p>
-          <%# Put something here for categories %> 
-          <p>
-            <span class="text-muted">Categories: </span>
-              <% post.categories.forEach((category,index) => { %>
-                <% if(index>0) {%> 
-                  ,
-                  <% } %> 
-                <a 
-                  href="#"
-                  class=""
-                >
-                <%= category %> 
-              </a>
-              <% }); %>
-          </p>
-          <% if (post.author._id.equals(user.profile._id)) { %>
-          <form 
-            action="/posts/<%= post._id %>?_method=DELETE"
-            class="delete-form align"
-            role="button" 
-            method="POST"
-          >
-            <button class="btn btn-outline-danger" type="submit">X</button>
-           </form>
-           <a 
-            class="btn btn-warning"
-            role="button" 
-            href="/posts/<%= post._id %>/edit"
-            >
-              Edit
-          </a>
-          <% } %> 
-
-          <%# Put something here to check if logged in and if so, add reply %> 
-
-
-        </div>
-        </div>
-
-      
-    <% }) %>
+    <%- include('../partials/postsShow') %> 
     </div>
   </section>
   </main>
