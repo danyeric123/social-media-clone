@@ -27,7 +27,10 @@ function index(req, res) {
               })
             })
         })
-  
+        .catch(err=>{
+          console.log(err)
+          res.redirect('/posts')
+        })
 }
 
 function create(req, res) {
@@ -42,23 +45,31 @@ function create(req, res) {
                 })
         res.redirect('/posts')
       })
+      .catch(err=>{
+        console.log(err)
+        res.redirect('/posts')
+      })
 }
 
 function show(req, res) {
   Post.findById(req.params.id)
-  .populate('author')
-  .populate({
-    path: 'replies',
-    populate: {
-      path: 'author'
-    }
-  })
-  .then((post)=> {
-    res.render('posts/show', {
-      title: 'Post Details',
-      post
-    })
-  })
+      .populate('author')
+      .populate({
+        path: 'replies',
+        populate: {
+          path: 'author'
+        }
+      })
+      .then((post)=> {
+        res.render('posts/show', {
+          title: 'Post Details',
+          post
+        })
+      })
+      .catch(err=>{
+        console.log(err)
+        res.redirect('/posts')
+      })
 }
 
 function categoryShow(req, res) {
@@ -72,34 +83,42 @@ function categoryShow(req, res) {
           posts: posts.reverse()
         })
       })
+      .catch(err=>{
+        console.log(err)
+        res.redirect('/posts')
+      })
 }
 
 function reply(req, res) {
   Post.findById(req.params.id)
-  .then((post)=> {
-    req.body.author = req.user.profile
-    post.replies.push(req.body)
-    post.save()
-    .then(()=> {
-      res.redirect(`/posts/${req.params.id}`)
-    })
-  })
+      .then((post)=> {
+        req.body.author = req.user.profile
+        post.replies.push(req.body)
+        post.save()
+        .then(()=> {
+          res.redirect(`/posts/${req.params.id}`)
+        })
+      })
+      .catch(err=>{
+        console.log(err)
+        res.redirect('/posts')
+      })
 }
 
 function deletePost(req,res){
   Profile.findById(req.params.profileId)
-  .then((profile) => {
-    profile.posts.remove({_id: req.params.postId})
-    profile.save()
-    Post.findOneAndDelete({_id: req.params.postId})
-    .then(() => {
-      res.redirect(`/posts`)
-    })
-  })
-  .catch(err=>{
-    console.log(err)
-    res.redirect('/posts')
-  })
+        .then((profile) => {
+          profile.posts.remove({_id: req.params.postId})
+          profile.save()
+          Post.findOneAndDelete({_id: req.params.postId})
+          .then(() => {
+            res.redirect(`/posts`)
+          })
+        })
+        .catch(err=>{
+          console.log(err)
+          res.redirect('/posts')
+        })
 }
 
 function edit(req, res) {
@@ -109,6 +128,10 @@ function edit(req, res) {
           title: `Edit Post`,
           post
         })
+      })
+      .catch(err=>{
+        console.log(err)
+        res.redirect('/posts')
       })
 }
 

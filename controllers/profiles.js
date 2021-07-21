@@ -20,6 +20,10 @@ function index(req, res) {
               profiles,
             })
           })
+          .catch((err) => {
+            console.log(err)
+            res.redirect("/")
+          })
 }
 
 function search(req, res) {
@@ -30,6 +34,10 @@ function search(req, res) {
               profiles,
             })
           })
+          .catch((err) => {
+            console.log(err)
+            res.redirect("/")
+          })
 }
 
 function edit(req, res) {
@@ -39,6 +47,10 @@ function edit(req, res) {
             title: `Editing ${profile.name}'s profile`,
             profile
           })
+        })
+        .catch((err) => {
+          console.log(err)
+          res.redirect("/")
         })
 }
 
