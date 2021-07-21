@@ -5,7 +5,8 @@ export {
   index, 
   create, 
   show, 
-  reply 
+  reply,
+  categoryShow,
 }
 
 function index(req, res) {
@@ -27,7 +28,8 @@ function index(req, res) {
 
 function create(req, res) {
   req.body.author = req.user.profile
-  console.log(req.body)
+  req.body.categories=req.body.categories.split("; ")
+  console.log(req.body.categories)
   Post.create(req.body)
   .then(()=> {
     res.redirect('/posts')
@@ -49,6 +51,18 @@ function show(req, res) {
       post
     })
   })
+}
+
+function categoryShow(req, res) {
+  Post.find({name: req.body.category})
+      .populate('author')
+      .sort({createdAt: "asc"})
+      .then((posts) => {
+        res.render('posts/index', {
+          title: 'Social Media Homepage',
+          posts: posts.reverse()
+        })
+      })
 }
 
 function reply(req, res) {

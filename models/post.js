@@ -22,7 +22,7 @@ const postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Profile'
   },
-  category: String,
+  categories: [String],
   replies: [replySchema]
 },{
   timestamps: true
