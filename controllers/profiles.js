@@ -1,6 +1,5 @@
 import { Post } from "../models/post.js"
 import { Profile } from "../models/profile.js"
-import { User } from "../models/user.js"
 
 export { 
   search, 
