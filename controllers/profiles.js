@@ -8,14 +8,25 @@ export {
   update, 
   follow, 
   unfollow, 
-  edit 
+  edit,
+  index,
+}
+
+function index(req, res) {
+  Profile.find({})
+          .then(profiles => {
+            res.render('profiles/index', {
+              title: "All Users",
+              profiles,
+            })
+          })
 }
 
 function search(req, res) {
   Profile.find({name: req.body.search})
           .then(profiles => {
             res.render('profiles/index', {
-              title: "Profiles",
+              title: "Search Results",
               profiles,
             })
           })

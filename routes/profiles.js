@@ -8,6 +8,7 @@ export {
 
 const router = Router()
 
+router.get('/', middleware.isLoggedIn, profilesCtrl.index)
 router.post('/search', middleware.isLoggedIn, profilesCtrl.search)
 router.get('/:id', middleware.isLoggedIn, profilesCtrl.show)
 router.put('/:id', middleware.isLoggedIn, profilesCtrl.update)
