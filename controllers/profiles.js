@@ -6,8 +6,8 @@ export {
   search, 
   show, 
   update, 
-  addFriend, 
-  removeFriend, 
+  follow, 
+  unfollow, 
   edit 
 }
 
@@ -33,7 +33,7 @@ function edit(req, res) {
 
 function show(req, res) {
   Profile.findById(req.params.id)
-        .populate("friends")
+        .populate("following")
         .then((profile) => {
           Post.find({ author: profile._id })
           .then((posts) => {
@@ -65,12 +65,17 @@ function update(req, res) {
         })
 }
 
-function addFriend(req, res) {
+function follow(req, res) {
   Profile.findById(req.user.profile)
           .then(profile => {
-            profile.friends.push(req.params.id)
+            profile.following.push(req.params.id)
             profile.save()
             .then(()=> {
+              Profile.findById(req.params.id)
+                     .then(profile=>{
+                       profile.followers.push(req.user.profile)
+                       profile.save()
+                     })
               res.redirect(`/profiles/${req.params.id}`)
             })
           })
@@ -80,11 +85,11 @@ function addFriend(req, res) {
           })
 }
 
-function removeFriend(req, res) {
+function unfollow(req, res) {
   Profile.findById(req.user.profile)
         .then(profile => {
-          let idx = profile.friends.indexOf(req.params.id)
-          profile.friends.splice(idx, 1)
+          let idx = profile.following.indexOf(req.params.id)
+          profile.following.splice(idx, 1)
           profile.save()
           .then(()=> {
             res.redirect(`/profiles/${req.params.id}`)

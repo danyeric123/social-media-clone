@@ -12,7 +12,8 @@ const profileSchema = new Schema({
   bio: String,
   avatar: String,
   posts: [{ type: Schema.Types.ObjectId, ref: "Post"}],
-  friends: [{ type: Schema.Types.ObjectId, ref: "Profile"}]
+  followers: [{ type: Schema.Types.ObjectId, ref: "Profile"}],
+  following: [{ type: Schema.Types.ObjectId, ref: "Profile"}]
 }, {
   timestamps: true
 })

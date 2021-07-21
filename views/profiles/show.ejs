@@ -62,34 +62,39 @@
         </a>
       </div>
     <% } %>
-    <% if (!profile._id.equals(userProfile._id) && !userProfile.friends.includes(profile._id)) { %>
-      <a href="/profiles/<%= profile._id %>/friend" class="btn btn-primary">
-        Add Friend
+    <% if (!profile._id.equals(userProfile._id) && !userProfile.following.includes(profile._id)) { %>
+      <a href="/profiles/<%= profile._id %>/follow" class="btn btn-primary">
+        Follow
       </a>
     <% } %>
-    <% if (!profile._id.equals(userProfile._id) && userProfile.friends.includes(profile._id)) { %>
-      <a href="/profiles/<%= profile._id %>/unfriend" class="btn btn-primary">
-        Remove Friend
+    <% if (!profile._id.equals(userProfile._id) && userProfile.following.includes(profile._id)) { %>
+      <a href="/profiles/<%= profile._id %>/unfollow" class="btn btn-danger">
+        Unfollow
       </a>
     <% } %>
   </section>
   <section class="pt-3">
     <div class="container text-center">
-      <h2><%= profile.name %>'s friends</h2>
-        <% profile.friends.forEach(friend => { %>
-            <a class="text-decoration-none" href="/profiles/<%= friend._id %>">
+      <h4>Following</h4>
+      <div 
+        class="row row"
+      >
+        <% profile.following.forEach(follow => { %>
+          <div class="col-sm-6">
+              <div class="card shadow-sm mb-4">
+            <a class="text-decoration-none" href="/profiles/<%= follow._id %>">
                   <img
                     class="card-img-top"
-                    src="<%= friend.avatar %>"
-                    alt="<%= friend.name %>'s avatar"
+                    src="<%= follow.avatar %>"
+                    alt="<%= follow.name %>'s avatar"
                     width="100%"
                   />
                 <div class="card-body">
                   <p>
-                    <%= friend.name %>
+                    <%= follow.name %>
                   </p>
                   <p class="card-text text-dark fs-6 mt-0">
-                    Joined <%= friend.createdAt.toLocaleDateString() %>
+                    Joined <%= follow.createdAt.toLocaleDateString() %>
                   </p>
                 </div>
               </div>
@@ -97,7 +102,7 @@
           </div>
         <% }) %>
       </div>
-      <h2 class="mb-3"><%= profile.name %>'s posts</h2>
+      <h4 class="mb-3">Posts</h4>
         <%- include('../partials/postsShow') %> 
         
       </div>
