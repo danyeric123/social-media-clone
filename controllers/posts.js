@@ -10,6 +10,7 @@ export {
   deletePost as delete,
   edit,
   update,
+  like,
 }
 
 function index(req, res) {
@@ -18,6 +19,7 @@ function index(req, res) {
           //author:{$in:profile.friends}
           Post.find({})
             .populate('author')
+            .populate('likes')
             .sort({createdAt: "asc"})
             .then((posts) => {
               res.render('posts/index', {
@@ -120,4 +122,19 @@ function update(req, res) {
         console.log(err)
         res.redirect('/')
       })
-    }
+}
+
+function like(req,res){
+  Post.findById(req.params.id)
+      .then(post=>{
+        if(!post.likes.includes(req.user.profile._id)){
+          post.likes.push(req.user.profile)
+          post.save()
+        }
+        res.redirect('/posts')
+      })
+      .catch(err=>{
+        console.log(err)
+        res.redirect('/posts')
+      })
+}
