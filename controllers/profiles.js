@@ -1,3 +1,4 @@
+import { Post } from "../models/post.js"
 import { Profile } from "../models/profile.js"
 import { User } from "../models/user.js"
 
@@ -34,15 +35,19 @@ function show(req, res) {
   Profile.findById(req.params.id)
   .populate("friends")
   .then((profile) => {
+    Post.find({ author: profile._id })
+    .then((posts) => {
       Profile.findById(req.user.profile)
       .then(userProfile => {
         res.render("profiles/show", {
           title: `${profile.name}'s profile`,
           profile,
           userProfile,
+          posts
         })
       })
     })
+  })
   .catch((err) => {
     console.log(err)
     res.redirect("/")

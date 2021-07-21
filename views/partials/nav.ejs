@@ -41,19 +41,11 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            <% if(user?.profile.avatar) {%>
               <img 
                 class="rounded-circle avatar-img"
                 src="<%= user.profile.avatar %>" 
                 alt="Your avatar"
               >
-            <% } else { %>
-              <img
-                class="avatar-img"
-                src="/images/icons/user-small.png" 
-                alt="A placeholder avatar"
-              >
-            <% } %> 
           </a>
           <ul 
             class="dropdown-menu bg-secondary" 
@@ -68,11 +60,16 @@
               </a>
             </li>
             <li><hr class="dropdown-divider bg-secondary text-white"></li>
-            <% } %> 
-    <% if (user) { %>
-      <a href="/auth/logout">
-        <button type="submit">Logout</button>
-      </a>
+            <li>
+              <a 
+                href="/auth/logout" 
+                class="dropdown-item bg-secondary text-white"
+              >
+                Sign Out
+              </a>
+            </li>
+          </ul>
+        </div>
     <% } else { %>
       <a href="/auth/google" class="siwg-link">
         <button type="submit" class="siwg">

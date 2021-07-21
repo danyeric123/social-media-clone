@@ -1,0 +1,115 @@
+<%- include('../partials/html-head') %>
+<% if (user.profile._id.toString() === profile._id.toString()) { %>
+  <style>
+    #profile-dropdown {
+      display: none;
+    }
+  </style>
+<% } %>
+<%- include('../partials/nav') %>
+
+<main>
+  <section' class="text-center">
+    <img
+        class="image-rounded" 
+        src="<%= profile.avatar %>" 
+        alt="<%= profile.name %>'s avatar"
+      >
+      <h1 class="display-5 fw-bold text-white pt-2"><%= profile.name %></h1>
+    <div class="container py-4">
+      <table class="table align-middle">
+        <tbody>
+          <% if (user.profile._id.toString() === profile._id.toString()) { %>
+            <tr>
+              <td>Google Email:</td>
+              <td><%= user.email %></td>
+            </tr>
+          <% } %>
+          <tr>
+            <td>Name:</td>
+            <td><%= profile.name %></td>
+          </tr>
+          <tr>
+            <td>Bio:</td>
+            <td>
+              <%= profile.bio  %> 
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <% if (user.profile._id.toString() === profile._id.toString()) { %>
+      <div class="align-middle">
+        <a 
+        class="btn btn-warning"
+        role="button" 
+        href="/profiles/<%= profile._id %>/edit"
+        >
+          Edit Profile
+        </a>
+        <a 
+          class="btn btn-danger ms-4"
+          role="button" 
+          href="/auth/logout"
+        >
+          Logout
+        </a>
+      </div>
+    <% } %>
+    <% if (!profile._id.equals(userProfile._id) && !userProfile.friends.includes(profile._id)) { %>
+      <a href="/profiles/<%= profile._id %>/friend" class="btn btn-primary">
+        Add Friend
+      </a>
+    <% } %>
+    <% if (!profile._id.equals(userProfile._id) && userProfile.friends.includes(profile._id)) { %>
+      <a href="/profiles/<%= profile._id %>/unfriend" class="btn btn-primary">
+        Remove Friend
+      </a>
+    <% } %>
+  </section>
+  <section class="pt-3">
+    <div class="container text-center">
+      <h2><%= profile.name %>'s friends</h2>
+        <% profile.friends.forEach(friend => { %>
+            <a class="text-decoration-none" href="/profiles/<%= friend._id %>">
+                  <img
+                    class="card-img-top"
+                    src="<%= friend.avatar %>"
+                    alt="<%= friend.name %>'s avatar"
+                    width="100%"
+                  />
+                <div class="card-body">
+                  <p>
+                    <%= friend.name %>
+                  </p>
+                  <p class="card-text text-dark fs-6 mt-0">
+                    Joined <%= friend.createdAt.toLocaleDateString() %>
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% }) %>
+      </div>
+      <h2 class="mb-3"><%= profile.name %>'s posts</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g5 px-4 align-middle">
+        <% posts.forEach(post => { %>
+          <div class="col align-middle">
+            <div class="card bg-primary mb-3">
+              <div class="card-body">
+                <a 
+                  href="/posts/<%= post._id %>" 
+                >
+                <p class="card-title fs-4 text-light"><%= post.text %></p>
+                <p class="card-text fs-5 text-light">
+                  Posted on: <%= post.createdAt.toLocaleDateString() %>
+                </p>
+                </a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+  </main>

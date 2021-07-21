@@ -10,21 +10,12 @@
         <div class="col">
           <a class="text-decoration-none" href="/profiles/<%= profile._id %>">
             <div class="card shadow-sm mb-4">
-              <% if (profile.avatar) { %>
                 <img
                   class="card-img-top"
                   src="<%= profile.avatar %>"
                   alt="<%= profile.name %>'s avatar"
                   width="100%"
                 />
-              <% } else {%>
-                <img
-                  class="card-img-top"
-                  src="/images/icons/user.png"
-                  alt="A placeholder avatar"
-                  width="100%"
-                />
-              <% } %>
               <div class="card-body">
                 <p class="card-title fs-5 text-dark mb-0">
                   <%= profile.name %>

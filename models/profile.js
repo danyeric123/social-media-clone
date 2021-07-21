@@ -9,9 +9,9 @@ const Schema = mongoose.Schema
 
 const profileSchema = new Schema({
   name: String,
+  bio: String,
   avatar: String,
   posts: [{ type: Schema.Types.ObjectId, ref: "Post"}],
-  bio: String,
   friends: [{ type: Schema.Types.ObjectId, ref: "Profile"}]
 }, {
   timestamps: true
