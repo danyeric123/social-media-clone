@@ -10,7 +10,7 @@ export {
   deletePost as delete,
   edit,
   update,
-  like,
+  likeAndUnlike,
 }
 
 function index(req, res) {
@@ -124,11 +124,14 @@ function update(req, res) {
       })
 }
 
-function like(req,res){
+function likeAndUnlike(req,res){
   Post.findById(req.params.id)
       .then(post=>{
         if(!post.likes.includes(req.user.profile._id)){
           post.likes.push(req.user.profile)
+          post.save()
+        }else{
+          post.likes.remove({_id:req.user.profile._id})
           post.save()
         }
         res.redirect('/posts')
