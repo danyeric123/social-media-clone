@@ -3,31 +3,40 @@
 
 <main>
   <% if(user){ %> 
-  <form action="/posts" method="POST">
-    <h2>Write a Post</h2>
-    <div class="mb-3 mx-5">
-      <label for="post-content" class="form-label">Post</label>
-      <textarea class="form-control" name="text" id="post-content" rows="5"></textarea>
+    <div class="card justify-content-center align-self-center" style="width: 40rem;">
+      <h2 class="card-header">Write a Post</h2>
+      <form action="/posts" method="POST">
+    
+        <div class="mb-3 mx-5">
+          <label for="post-content" class="form-label">Post</label>
+          <textarea class="form-control" name="text" id="post-content" rows="5"></textarea>
+        </div>
+        <div class="mb-3 mx-5">
+          <label for="title-input" class="form-label">Categories</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="title-input"
+            name="category" 
+            placeholder="Choose a category"
+          >
+        </div>
+        <button class="btn btn-primary ms-5" type="submit">Post</button>
+        </form>
     </div>
-    <div class="mb-3 mx-5">
-      <label for="title-input" class="form-label">Categories</label>
-      <input 
-        type="text" 
-        class="form-control" 
-        id="title-input"
-        name="category" 
-        placeholder="Choose a category"
-      >
-    </div>
-    <button class="btn btn-primary ms-5" type="submit">Post</button>
-    </form>
     <% } %> 
+    <section>
+    <div class="container py-5 px-3">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g5 px-sm-5 px-4">
     <% posts.forEach((post, idx) => { %>
-      <section>
-        <div>
+      
+        <div class="col">
+        <div 
+        class="card text-center bg-light mb-3"
+        >
           <a 
               href="/profiles/<%= post.author._id %>"
-              class="text-decoration-none text-light"
+              class="text-decoration-none card-header"
             >
               <%= post.author.name %>
               <img
@@ -40,11 +49,11 @@
           </a>
           <a 
             href="/posts/<%= post._id %>" 
-            class=""
+            class="card-text"
           >
             <p class=""><%= post.text %></p>
           </a>
-          <p class="fs-7 fst-italic">
+          <p class="text-muted">
             on <%= post.createdAt.toLocaleDateString() %>
           </p>
           <%# Put something here for categories %> 
@@ -53,8 +62,12 @@
 
 
         </div>
-      </section>
+        </div>
+
+      
     <% }) %>
+    </div>
+  </section>
   </main>
   <%- include('../partials/footer') %>
   

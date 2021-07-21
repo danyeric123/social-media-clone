@@ -8,7 +8,7 @@
 <% } %>
 <%- include('../partials/nav') %>
 
-<main>
+<main class="d-flex justify-content-center">
   <section' class="text-center">
     <img
         class="image-rounded" 
@@ -33,6 +33,12 @@
             <td>Bio:</td>
             <td>
               <%= profile.bio  %> 
+            </td>
+          </tr>
+          <tr class="text-muted">
+            <td>Joined:</td>
+            <td>
+              <%= profile.createdAt.toLocaleString()  %> 
             </td>
           </tr>
         </tbody>
@@ -101,7 +107,7 @@
                   href="/posts/<%= post._id %>" 
                 >
                 <p class="card-title fs-4 text-light"><%= post.text %></p>
-                <p class="card-text fs-5 text-light">
+                <p class="text-muted">
                   Posted on: <%= post.createdAt.toLocaleDateString() %>
                 </p>
                 </a>
