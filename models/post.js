@@ -23,7 +23,11 @@ const postSchema = new Schema({
     ref: 'Profile'
   },
   categories: [String],
-  replies: [replySchema]
+  replies: [replySchema],
+  likes: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile'
+  }
 },{
   timestamps: true
 })

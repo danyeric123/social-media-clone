@@ -32,11 +32,16 @@ function index(req, res) {
 function create(req, res) {
   req.body.author = req.user.profile
   req.body.categories=req.body.categories.split("; ")
-  console.log(req.body.categories)
+  console.log(req.body)
   Post.create(req.body)
-  .then(()=> {
-    res.redirect('/posts')
-  })
+      .then((post)=> {
+        Profile.findById(req.user.profile)
+                .then(profile=>{
+                  profile.posts.push(post._id)
+                  profile.save()
+                })
+        res.redirect('/posts')
+      })
 }
 
 function show(req, res) {
