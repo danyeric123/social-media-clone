@@ -34,9 +34,10 @@
         <div 
         class="card text-center bg-light mb-3"
         >
-          <a 
+          <div class="card-header">
+            <a 
               href="/profiles/<%= post.author._id %>"
-              class="text-decoration-none card-header"
+              class="text-decoration-none"
             >
               <%= post.author.name %>
               <img
@@ -46,7 +47,8 @@
                 height="35"
                 width="35"
               />
-          </a>
+           </a>
+          </div>
           <a 
             href="/posts/<%= post._id %>" 
             class="card-text text-decoration-none"
@@ -71,7 +73,14 @@
               </a>
               <% }); %>
           </p>
-          
+          <% if (!profile._id.equals(userProfile._id) && !userProfile.friends.includes(profile._id)) { %>
+          <form 
+            action="/posts/<%= post._id %>?_method=DELETE"
+            class="delete-form align"
+            method="POST"
+          >
+            <button class="btn btn-outline-danger" type="submit">X</button>
+           </form>
 
           <%# Put something here to check if logged in and if so, add reply %> 
 
