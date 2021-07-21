@@ -12,6 +12,8 @@ const replySchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Profile'
   }
+},{
+  timestamps: true
 })
 
 const postSchema = new Schema({
