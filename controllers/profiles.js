@@ -27,7 +27,8 @@ function index(req, res) {
 }
 
 function search(req, res) {
-  Profile.find({name: req.body.search})
+  let regex = new RegExp(req.body.search)
+  Profile.find({name: { $regex: regex, $options: 'i' }})
           .then(profiles => {
             res.render('profiles/index', {
               title: "Search Results",
