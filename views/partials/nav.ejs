@@ -3,28 +3,32 @@
 <% } %>
 </head>
 <body>
-  <nav class="container">
+  <nav class="container navbar-light" style="background-color: #e3f2fd;">
     <div
       class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
     >
       <ul
-        class="nav col-12 col-lg-auto me-lg-auto mb-2 mb-md-0 justify-content-center"
+        class="nav col-12 col-lg-auto me-auto justify-content-center"
+        style="font-size: 23px;"
       >
-      <li class="d-flex align-items-center ms-3 mb-2 mb-lg-0">
+      <li class="d-flex align-items-center">
         <a href="/posts" class="text-decoration-none">
+          <i class="fas fa-home"></i>
           Home
         </a>
       </li>
       <% if (user) { %>
         <li class="d-flex align-items-center ms-3 mb-2 mb-lg-0">
           <a href="/chatroom" class="text-decoration-none">
-            Chat Room
+            <i class="fab fa-facebook-messenger"></i>
+            Chat
           </a>
         </li>
       <% } %>
     </ul>
     <form action="/profiles/search" method="POST" class="d-flex align-items-center me-3">
       <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search User">
+      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
     </form>
     <div class="text-end d-flex align-items-center">
       <% if (user) { %>

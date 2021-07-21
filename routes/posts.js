@@ -8,7 +8,7 @@ export {
 
 const router = Router()
 
-router.get('/', postsCtrl.index)
+router.get('/', middleware.isLoggedIn, postsCtrl.index)
 router.post('/', middleware.isLoggedIn, postsCtrl.create)
 router.get('/category', middleware.isLoggedIn, postsCtrl.categoryShow)
 router.get('/:id', middleware.isLoggedIn, postsCtrl.show)
