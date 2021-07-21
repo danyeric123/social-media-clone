@@ -2,43 +2,29 @@
 <%- include('../partials/nav') %>
 
 <main class="container">
-  <h1 class="my-3"><%= title %></h1>
-  <section class="p-4 p-md-5 mb-4 text-white rounded bg-dark mx-4">
+  <section class="p-4 p-md-5 mb-4 text-white rounded bg-success mx-4">
     <div class="col-md-8 text-light px-0">
-      <h3 class="fs-1 fst-italic">
-        <a 
-          href="/profiles/<%= post.author._id %>"
-          class="text-decoration-none text-light"
-        >
-          <%= post.author.name %>
-          <img
+      <p style="font-size: 20px;"><strong>
+        <img
             src="<%= post.author.avatar %>"
             class="img-fluid rounded-circle"
             alt="<%= post.author.name %>'s avatar"
             height="35"
             width="35"
           />
+        <a 
+          href="/profiles/<%= post.author._id %>"
+          class="text-decoration-none text-light"
+        >
+          <%= post.author.name %>
         </a>
-      </h3>
-      <p class="fs-7 fst-italic">
-        on <%= post.createdAt.toLocaleDateString() %>
+      </strong>
+      <%= post.createdAt.toLocaleDateString() %>
       </p>
-      <p class="lead my-3"><%= post.text %> </p>
+      <p><%= post.text %></p>
     </div>
   </section>
-  <form action="/posts/<%= post._id %>" method="POST" class="mb-3">
-    <h2 class="mb-3">Write a Reply</h2>
-    <div class="mb-3 mx-5">
-      <label for="reply-content" class="form-label">Reply</label>
-      <textarea 
-        class="form-control" 
-        id="reply-content" 
-        rows="3" 
-        name="text"
-      ></textarea>
-    </div>
-    <button class="btn btn-primary ms-5" type="submit">Reply</button>
-  </form>
+  
   <h2 class="mb-3">All Replies</h2>
   <% post.replies.forEach(reply => { %>
     <section class="p-2 p-md-3 mb-3 rounded mx-4 border shadow-sm">
@@ -57,12 +43,24 @@
             />
             <%= reply.author.name %>
           </a>
-          on <%= reply.createdAt.toLocaleDateString() %>
+         <%= reply.createdAt.toLocaleDateString() %>
         </h4>
         <p class="lead my-3"><%= reply.text %> </p>
       </div>
     </section>
   <% }) %>
+  <form action="/posts/<%= post._id %>" method="POST" class="mb-3">
+    <div class="mb-3 mx-5">
+      <label for="reply-content" class="form-label">Reply</label>
+      <textarea 
+        class="form-control" 
+        id="reply-content" 
+        rows="3" 
+        name="text"
+      ></textarea>
+    </div>
+    <button class="btn btn-primary ms-5" type="submit">Reply</button>
+  </form>
 </main>
 
 <%- include('../partials/footer') %>
