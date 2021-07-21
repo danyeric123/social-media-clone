@@ -34,6 +34,7 @@ function edit(req, res) {
 function show(req, res) {
   Profile.findById(req.params.id)
         .populate("following")
+        .populate("followers")
         .then((profile) => {
           Post.find({ author: profile._id })
           .then((posts) => {
@@ -67,14 +68,14 @@ function update(req, res) {
 
 function follow(req, res) {
   Profile.findById(req.user.profile)
-          .then(profile => {
-            profile.following.push(req.params.id)
-            profile.save()
+          .then(followerProfile => {
+            followerProfile.following.push(req.params.id)
+            followerProfile.save()
             .then(()=> {
               Profile.findById(req.params.id)
-                     .then(profile=>{
-                       profile.followers.push(req.user.profile)
-                       profile.save()
+                     .then(followingProfile=>{
+                        followingProfile.followers.push(req.user.profile)
+                        followingProfile.save()
                      })
               res.redirect(`/profiles/${req.params.id}`)
             })
@@ -87,11 +88,15 @@ function follow(req, res) {
 
 function unfollow(req, res) {
   Profile.findById(req.user.profile)
-        .then(profile => {
-          let idx = profile.following.indexOf(req.params.id)
-          profile.following.splice(idx, 1)
-          profile.save()
+        .then(followerProfile => {
+          followerProfile.following.remove({_id:req.params.id})
+          followerProfile.save()
           .then(()=> {
+            Profile.findById(req.params.id)
+                    .then(followingProfile=>{
+                      followingProfile.followers.remove({_id: req.user.profile._id})
+                      followingProfile.save()
+                    })
             res.redirect(`/profiles/${req.params.id}`)
           })
         })
