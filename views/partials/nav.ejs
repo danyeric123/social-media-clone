@@ -3,40 +3,11 @@
 <% } %>
 </head>
 <body>
-  <nav class="navbar-light" style="background-color: #e3f2fd;">
+  <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div
       class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
     >
-      <ul
-        class="nav col-12 col-lg-auto me-auto justify-content-center"
-        style="font-size: 23px;"
-      >
-      <li class="d-flex align-items-center">
-        <a href="/posts" class="text-decoration-none">
-          <i class="fas fa-home"></i>
-          Home
-        </a>
-      </li>
-      <li class="d-flex align-items-center" style="padding-left: 15px;">
-        <a href="/profiles" class="text-decoration-none">
-          <i class="fas fa-users"></i>
-          All Profiles
-        </a>
-      </li>
-      <% if (user) { %>
-        <li class="d-flex align-items-center ms-3 mb-2 mb-lg-0">
-          <a href="/chatroom" class="text-decoration-none">
-            <i class="fab fa-facebook-messenger"></i>
-            Chat
-          </a>
-        </li>
-      <% } %>
-    </ul>
-    <form action="/profiles/search" method="POST" class="d-flex align-items-center me-3">
-      <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search User">
-      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-    </form>
-    <div class="text-end d-flex align-items-center">
+    <div class="text-end d-flex align-items-center nav-brand">
       <% if (user) { %>
         <div id="profile-dropdown" class="dropdown text-end">
           <a 
@@ -82,4 +53,36 @@
         </button>
       </a>
     <% } %>
+    </div>
+      <ul
+        class="nav col-12 col-lg-auto me-auto justify-content-center"
+        style="font-size: 23px;"
+      >
+      <li class="d-flex align-items-center nav-item">
+        <a href="/posts" class="text-decoration-none">
+          <i class="fas fa-home"></i>
+          Home
+        </a>
+      </li>
+      <li class="d-flex align-items-center nav-item" style="padding-left: 15px;">
+        <a href="/profiles" class="text-decoration-none">
+          <i class="fas fa-users"></i>
+          All Profiles
+        </a>
+      </li>
+      <% if (user) { %>
+        <li class="d-flex align-items-center ms-3 mb-2 mb-lg-0 nav-item">
+          <a href="/chatroom" class="text-decoration-none">
+            <i class="fab fa-facebook-messenger"></i>
+            Chat
+          </a>
+        </li>
+      <% } %>
+    </ul>
+    <div class="position-absolute end-0">
+      <form action="/profiles/search" method="POST" class="nav-item d-flex align-items-center me-3">
+        <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search User">
+        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
   </nav>
