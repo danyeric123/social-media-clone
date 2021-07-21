@@ -2,15 +2,19 @@
 <%- include('./partials/nav') %>
 
 <main>
-  <h1>hello, <%= user ? user.profile.name : "friend" %></h1>
-  <% if (user?.profile.avatar) { %>
-    <div>
-      <img 
-        src="<%= user.profile.avatar %>" 
-        alt="<%= user.profile.name %> avatar"
-      >
+  <div class="card text-center">
+    <div class="card-header">
+      Sign In Please
     </div>
-  <% } %>
+    <div class="card-body">
+      <p class="card-text">You need to sign in first to access anything</p>
+      <a href="/auth/google" class="siwg-link">
+        <button type="submit" class="siwg">
+          <img id="siwg-image" alt="Sign in with Google" />
+        </button>
+      </a>
+    </div>
+  </div>
 </main>
 
 <%- include('./partials/footer') %>
