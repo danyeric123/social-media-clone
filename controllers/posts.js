@@ -7,6 +7,9 @@ export {
   show, 
   reply,
   categoryShow,
+  deletePost as delete,
+  edit,
+  update,
 }
 
 function index(req, res) {
@@ -76,3 +79,28 @@ function reply(req, res) {
     })
   })
 }
+
+function deletePost(req,res){
+
+}
+
+function edit(req, res) {
+  Post.findById(req.params.id)
+      .then(post => {
+        res.render('posts/edit', {
+          title: `Edit Post`,
+          post
+        })
+      })
+}
+
+function update(req, res) {
+  Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
+      .then((post) => {
+        res.redirect(`/posts`)
+      })
+      .catch((err) => {
+        console.log(err)
+        res.redirect('/')
+      })
+    }

@@ -3,9 +3,9 @@
 
 <main>
   <% if(user){ %> 
-    <div class="card justify-content-center align-self-center" style="width: 40rem;">
+    <div class="card d-flex flex-column" style="width: 40rem;">
       <h2 class="card-header">Write a Post</h2>
-      <form action="/posts" method="POST">
+      <form action="/posts" method="POST" class="container d-flex flex-column">
     
         <div class="mb-3 mx-5">
           <label for="post-content" class="form-label">Post</label>
@@ -73,14 +73,23 @@
               </a>
               <% }); %>
           </p>
-          <% if (!profile._id.equals(userProfile._id) && !userProfile.friends.includes(profile._id)) { %>
+          <% if (post.author._id.equals(user.profile._id)) { %>
           <form 
             action="/posts/<%= post._id %>?_method=DELETE"
             class="delete-form align"
+            role="button" 
             method="POST"
           >
             <button class="btn btn-outline-danger" type="submit">X</button>
            </form>
+           <a 
+            class="btn btn-warning"
+            role="button" 
+            href="/posts/<%= post._id %>/edit"
+            >
+              Edit
+          </a>
+          <% } %> 
 
           <%# Put something here to check if logged in and if so, add reply %> 
 
