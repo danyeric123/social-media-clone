@@ -10,7 +10,7 @@ const router = Router()
 
 router.get('/', middleware.isLoggedIn, postsCtrl.index)
 router.post('/', middleware.isLoggedIn, postsCtrl.create)
-router.get('/category', middleware.isLoggedIn, postsCtrl.categoryShow)
+router.get('/category/:categoryId', middleware.isLoggedIn, postsCtrl.categoryShow)
 router.get('/:id', middleware.isLoggedIn, postsCtrl.show)
 router.get('/:id/edit', middleware.isLoggedIn, postsCtrl.edit)
 router.get('/:id/like', middleware.isLoggedIn, postsCtrl.likeAndUnlike)

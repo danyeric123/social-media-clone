@@ -14,10 +14,9 @@ export {
 }
 
 function index(req, res) {
-  Profile.find(req.user.profile._id)
+  Profile.findById(req.user.profile._id)
         .then(profile=>{
-          //author:{$in:profile.friends}
-          Post.find({})
+          Post.find({author:{$in:[profile.following,req.user.profile]}})
             .populate('author')
             .populate('likes')
             .sort({createdAt: "asc"})
@@ -34,7 +33,6 @@ function index(req, res) {
 function create(req, res) {
   req.body.author = req.user.profile
   req.body.categories=req.body.categories.split("; ")
-  console.log(req.body)
   Post.create(req.body)
       .then((post)=> {
         Profile.findById(req.user.profile)
@@ -64,12 +62,13 @@ function show(req, res) {
 }
 
 function categoryShow(req, res) {
-  Post.find({name: req.body.category})
+  Post.find({categories:req.params.categoryId})
       .populate('author')
       .sort({createdAt: "asc"})
       .then((posts) => {
+        console.log(req.params)
         res.render('posts/index', {
-          title: 'Social Media Homepage',
+          title: `Posts fof ${req.params.categoryId}`,
           posts: posts.reverse()
         })
       })

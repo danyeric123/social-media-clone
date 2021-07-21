@@ -45,7 +45,7 @@
         <p class=""><%= post.text %></p>
       </a>
       <p class="text-muted">
-        on <%= post.createdAt.toLocaleDateString() %>
+        Posted on <%= post.createdAt.toLocaleDateString() %>
       </p>
       <%# Put something here for categories %> 
       <p>
@@ -55,11 +55,10 @@
               ,
               <% } %> 
             <a 
-              href="#"
-              class=""
+              href="/posts/category/<%= category %>"
             >
-            <%= category %> 
-          </a>
+              <%= category %> 
+            </a>
           <% }); %>
       </p>
       <% if (post.author._id.equals(user.profile._id)) { %>
