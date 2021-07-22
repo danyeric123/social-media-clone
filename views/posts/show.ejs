@@ -53,13 +53,14 @@
     <div class="mb-3 mx-5">
       <label for="reply-content" class="form-label">Reply</label>
       <textarea 
+        onkeyup="toggleButton()" 
         class="form-control" 
         id="reply-content" 
         rows="3" 
         name="text"
       ></textarea>
     </div>
-    <button class="btn btn-primary ms-5" type="submit">Reply</button>
+    <button class="btn btn-primary ms-5 submit-btn" type="submit" disabled>Reply</button>
   </form>
 </main>
 
