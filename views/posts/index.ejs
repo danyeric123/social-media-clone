@@ -9,7 +9,7 @@
     
         <div class="mb-3 mx-5">
           <label for="post-content" class="form-label">Post</label>
-          <textarea class="form-control" name="text" id="post-content" rows="5"></textarea>
+          <textarea onkeyup="toggleButton()" class="form-control" name="text" id="post-content" rows="5"></textarea>
         </div>
         <div class="mb-3 mx-5">
           <label for="title-input" class="form-label">Categories</label>
@@ -21,7 +21,7 @@
             placeholder="Choose a category"
           >
         </div>
-        <button class="btn btn-primary ms-5" type="submit">Post</button>
+        <button class="btn btn-primary ms-5 submit-btn" type="submit" disabled>Post</button>
         </form>
     </div>
     <% } %> 

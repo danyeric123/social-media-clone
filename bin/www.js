@@ -4,10 +4,15 @@
  * Module dependencies.
  */
 
+export {
+  socketIO
+}
+
 import { app } from '../server.js'
 import debug from 'debug'
 import https from 'https'
 import http from 'http'
+import {Server} from 'socket.io'
 
 import fs from 'fs'
 import os from 'os'
@@ -15,6 +20,7 @@ import os from 'os'
 /**
  * Get port from environment and store in Express.
  */
+let socketIO = null
 
 const port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
@@ -42,8 +48,10 @@ if (process.env.NODE_ENV !== 'production') {
   }
 
   server = https.createServer(options, app)
+  socketIO = new Server(server)
 } else {
   server = http.createServer(app)
+  socketIO = new Server(server)
 }
 
 /**
