@@ -1,0 +1,16 @@
+<a 
+  class="float-end text-decoration-none pt-3"
+  href="/posts/<%= post._id %>/like"
+>
+  <button 
+    type="button" 
+    class="btn btn-primary btn-sm" 
+    data-bs-toggle="tooltip" 
+    data-bs-placement="top" 
+    title="<%= post.likes.reduce((accum,like)=>accum+like.name+", ","") %>"
+    >
+    <i class="far fa-thumbs-up"></i>
+    Like
+    <%= post.likes.length %> 
+  </button>
+</a>

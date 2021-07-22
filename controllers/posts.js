@@ -19,11 +19,11 @@ function index(req, res) {
           Post.find({author:{$in:[profile.following,req.user.profile]}})
             .populate('author')
             .populate('likes')
-            .sort({createdAt: "asc"})
+            .sort({createdAt: "desc"})
             .then((posts) => {
               res.render('posts/index', {
                 title: 'Social Media Homepage',
-                posts: posts.reverse()
+                posts: posts
               })
             })
         })

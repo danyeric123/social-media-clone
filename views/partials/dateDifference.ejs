@@ -1,0 +1,23 @@
+<% function difference() {
+  let postDate = post.createdAt
+  let difference = Date.now() - postDate
+  if(difference<10000){
+    return "<1 second"
+  }else if (difference<60000) {
+    return `${Math.floor(difference/10000)} seconds`
+  }else if (difference<3600000) {
+    return `${Math.floor(difference/60000)} minutes`
+  }else if (difference<86400000) {
+    return `${Math.floor(difference/3600000)} hours`
+  }else if (difference<604800000) {
+    return `${Math.floor(difference/86400000)} days`
+  }else if (difference<2628000000) {
+    return `${Math.floor(difference/604800000)} weeks`
+  }else if (difference<31540000000) {
+    return `${Math.floor(difference/2628000000)} months`
+  }else{
+    return `${Math.floor(difference/31540000000)} years`
+  }
+}
+   %> 
+   Posted <%= difference() %> ago

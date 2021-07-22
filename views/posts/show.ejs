@@ -19,26 +19,13 @@
           <%= post.author.name %>
         </a>
       </strong>
-      <small class="text-muted">Posted on <%= post.createdAt.toLocaleString() %></small>
+      <small class="text-muted">
+        <%- include('../partials/dateDifference')%>
+      </small>
       </p>
       <p class="card-text"><%= post.text %></p>
     </div>
-    <a 
-        class="float-end text-decoration-none pt-3"
-        href="/posts/<%= post._id %>/like"
-      >
-        <button 
-          type="button" 
-          class="btn btn-primary btn-sm" 
-          data-bs-toggle="tooltip" 
-          data-bs-placement="top" 
-          title="<%= post.likes.reduce((accum,like)=>accum+like.name+", ","") %>"
-          >
-          <i class="far fa-thumbs-up"></i>
-          Like
-          <%= post.likes.length %> 
-        </button>
-      </a>
+    <%- include('../partials/likeButton',{post}) %> 
   </section>
   
   <h2 class="mb-3">All Replies</h2>
