@@ -5,7 +5,7 @@
 <body>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
     <div
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      class="nav-brand d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
     >
     <div class="text-end d-flex align-items-center nav-brand">
       <% if (user) { %>
@@ -19,6 +19,7 @@
           >
               <img 
                 class="rounded-circle avatar-img"
+                referrerpolicy="no-referrer"
                 src="<%= user.profile.avatar %>" 
                 alt="Your avatar"
               >
@@ -58,20 +59,20 @@
         class="nav col-12 col-lg-auto me-auto justify-content-center"
         style="font-size: 23px;"
       >
-      <li class="d-flex align-items-center nav-item">
+      <li class="nav-item">
         <a href="/posts" class="text-decoration-none">
           <i class="fas fa-home"></i>
           Home
         </a>
       </li>
-      <li class="d-flex align-items-center nav-item" style="padding-left: 15px;">
+      <li class="nav-item" style="padding-left: 15px;">
         <a href="/profiles" class="text-decoration-none">
           <i class="fas fa-users"></i>
           All Profiles
         </a>
       </li>
       <% if (user) { %>
-        <li class="d-flex align-items-center ms-3 mb-2 mb-lg-0 nav-item">
+        <li class="nav-item" style="padding-left: 15px;">
           <a href="/chatroom" class="text-decoration-none">
             <i class="fab fa-facebook-messenger"></i>
             Chat
@@ -79,7 +80,7 @@
         </li>
       <% } %>
     </ul>
-    <div class="position-absolute end-0">
+    <div class="d-flex" style="padding-left: 15px;">
       <form action="/search" method="POST" class="nav-item d-flex align-items-center me-3">
         <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search User">
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>

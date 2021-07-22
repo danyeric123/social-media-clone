@@ -46,9 +46,7 @@
           </tr>
         </tbody>
       </table>
-    </div>
-    <% if (user.profile._id.toString() === profile._id.toString()) { %>
-      <div class="align-middle">
+      <% if (user.profile._id.toString() === profile._id.toString()) { %>
         <a 
         class="btn btn-warning"
         role="button" 
@@ -63,7 +61,6 @@
         >
           Logout
         </a>
-      </div>
     <% } %>
     <% if (!profile._id.equals(userProfile._id) && !userProfile.following.includes(profile._id)) { %>
       <a href="/profiles/<%= profile._id %>/follow" class="btn btn-primary">
@@ -75,16 +72,16 @@
         Unfollow
       </a>
     <% } %>
+    </div>
+    
   </section>
   <section class="pt-3">
-    <div class="container text-center">
+    <div class="container text-center py-5 px-3">
       <h4>Following</h4>
-      <div 
-        class="row"
-      >
+      <div class="d-flex justify-content-between">
         <% profile.following.forEach(follow => { %>
-          <div class="col-sm-6">
-              <div class="card shadow-sm mb-4">
+          <div>
+              <div class="card shadow-sm mx-3">
             <a class="text-decoration-none" href="/profiles/<%= follow._id %>">
                   <img
                     class="card-img-top"
@@ -107,12 +104,9 @@
       </div>
       <div class="container text-center">
         <h4>Followers</h4>
-        <div 
-          class="row"
-        >
+        <div class="d-flex justify-content-between">
           <% profile.followers.forEach(follower => { %>
-            <div class="col-sm-6">
-                <div class="card shadow-sm mb-4">
+                <div class="card shadow-sm mx-3">
               <a class="text-decoration-none" href="/profiles/<%= follower._id %>">
                     <img
                       class="card-img-top"
@@ -130,13 +124,13 @@
                   </div>
                 </div>
               </a>
-            </div>
           <% }) %>
         </div>
-      <h4 class="mb-3">Posts</h4>
-        <%- include('../partials/postCards') %> 
-        
       </div>
+        <div class="container text-center py-5 px-3">
+          <h4>Posts</h4>
+         <%- include('../partials/postCards') %>
+        </div> 
     </div>
   </section>
   </main>

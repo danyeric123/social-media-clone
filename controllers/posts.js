@@ -156,7 +156,7 @@ function likeAndUnlike(req,res){
           post.likes.remove({_id:req.user.profile._id})
           post.save()
         }
-        res.redirect('/posts')
+        res.redirect(`/posts/${req.params.id}`)
       })
       .catch(err=>{
         console.log(err)
