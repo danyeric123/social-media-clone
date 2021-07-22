@@ -9,15 +9,18 @@
 <%- include('../partials/nav') %>
 
 <main class="d-flex justify-content-center">
-  <section' class="text-center">
+  <section 
+    class="text-center card mb-3 d-flex align-items-center"
+    style="width: 600px;"
+  >
     <img
-        class="image-rounded" 
-        src="<%= profile.avatar %>" 
-        alt="<%= profile.name %>'s avatar"
-      >
-      <h1 class="display-5 fw-bold text-white pt-2"><%= profile.name %></h1>
-    <div class="container py-4">
-      <table class="table align-middle">
+      class="card-img-top" 
+      src="<%= profile.avatar %>" 
+      alt="<%= profile.name %>'s avatar"
+    >
+    <h1 class="card-header"><%= profile.name %></h1>
+    <div class="card-body py-4">
+      <table class="table align-middle card-text">
         <tbody>
           <% if (user.profile._id.toString() === profile._id.toString()) { %>
             <tr>

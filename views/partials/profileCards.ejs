@@ -1,6 +1,6 @@
-<div class="container py-5 px-3">
+<div class="container">
   <div 
-    class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g1 px-4"
+    class="row"
   >
     <% profiles.forEach(profile => { %>
       <div class="col">
@@ -13,7 +13,7 @@
                 width="100%"
               />
             <div class="card-body">
-              <p class="card-title fs-5 text-dark mb-0">
+              <p class="card-title text-dark">
                 <%= profile.name %>
               </p>
               <p class="text-muted">

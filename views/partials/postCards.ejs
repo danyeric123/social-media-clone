@@ -62,24 +62,22 @@
           <% }); %>
       </p>
       <% if (post.author._id.equals(user.profile._id)) { %>
-      <form 
-        action="/posts/<%= post._id %>/profile/<%= post.author._id %>?_method=DELETE"
-        class="delete-form align"
-        role="button" 
-        method="POST"
-      >
-        <button class="btn btn-outline-danger" type="submit">X</button>
-      </form>
-      <a 
-        class="btn btn-warning"
-        role="button" 
-        href="/posts/<%= post._id %>/edit"
+        <form 
+          action="/posts/<%= post._id %>/profile/<%= post.author._id %>?_method=DELETE"
+          class="delete-form align"
+          role="button" 
+          method="POST"
         >
-          Edit
-      </a>
-      <% } %> 
-
-      <%# Put something here to check if logged in and if so, add reply %> 
+          <button class="btn btn-outline-danger" type="submit">X</button>
+        </form>
+        <a 
+          class="btn btn-warning"
+          role="button" 
+          href="/posts/<%= post._id %>/edit"
+          >
+            Edit
+        </a>
+      <% } %>
 
 
     </div>

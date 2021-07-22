@@ -2,9 +2,9 @@
 <%- include('../partials/nav') %>
 
 <main class="container">
-  <section class="p-4 p-md-5 mb-4 text-white rounded bg-success mx-4">
+  <section class="p-3 text-white rounded bg-success card mt-3 mb-3">
     <div class="col-md-8 text-light px-0">
-      <p style="font-size: 20px;"><strong>
+      <p class="card-title" style="font-size: 20px;"><strong>
         <img
             src="<%= post.author.avatar %>"
             class="img-fluid rounded-circle"
@@ -21,8 +21,24 @@
       </strong>
       <%= post.createdAt.toLocaleDateString() %>
       </p>
-      <p><%= post.text %></p>
+      <p class="card-text"><%= post.text %></p>
     </div>
+    <a 
+        class="float-end text-decoration-none pt-3"
+        href="/posts/<%= post._id %>/like"
+      >
+        <button 
+          type="button" 
+          class="btn btn-primary btn-sm" 
+          data-bs-toggle="tooltip" 
+          data-bs-placement="top" 
+          title="<%= post.likes.reduce((accum,like)=>accum+", "+like.name,"") %>"
+          >
+          <i class="far fa-thumbs-up"></i>
+          Like
+          <%= post.likes.length %> 
+        </button>
+      </a>
   </section>
   
   <h2 class="mb-3">All Replies</h2>
@@ -54,8 +70,7 @@
       <label for="reply-content" class="form-label">Reply</label>
       <textarea 
         onkeyup="toggleButton()" 
-        class="form-control" 
-        id="reply-content" 
+        class="form-control"
         rows="3" 
         name="text"
       ></textarea>
