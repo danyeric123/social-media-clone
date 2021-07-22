@@ -54,6 +54,7 @@ function create(req, res) {
 function show(req, res) {
   Post.findById(req.params.id)
       .populate('author')
+      .populate('likes')
       .populate({
         path: 'replies',
         populate: {

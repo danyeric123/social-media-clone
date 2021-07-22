@@ -23,7 +23,7 @@ import { router as indexRouter } from './routes/index.js'
 import { router as authRouter } from './routes/auth.js'
 import { router as profilesRouter } from './routes/profiles.js'
 import { router as postsRouter } from './routes/posts.js'
-import { router as chatRouter } from './routes/chats.js'
+// import { router as chatRouter } from './routes/chats.js'
 
 // view engine setup
 app.set(
@@ -64,7 +64,7 @@ app.use(middleware.passUserToView)
 
 // router middleware
 app.use('/', indexRouter)
-app.use('/chatroom', chatRouter)
+// app.use('/chatroom', chatRouter)
 app.use('/auth', authRouter)
 app.use('/profiles', profilesRouter)
 app.use('/posts', postsRouter)

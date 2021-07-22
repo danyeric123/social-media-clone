@@ -2,8 +2,8 @@
 <%- include('../partials/nav') %>
 
 <main class="container">
-  <section class="p-3 text-white rounded bg-success card mt-3 mb-3">
-    <div class="col-md-8 text-light px-0">
+  <section class="p-3 rounded border-primary card mt-3 mb-3">
+    <div>
       <p class="card-title" style="font-size: 20px;"><strong>
         <img
             src="<%= post.author.avatar %>"
@@ -14,12 +14,12 @@
           />
         <a 
           href="/profiles/<%= post.author._id %>"
-          class="text-decoration-none text-light"
+          class="text-decoration-none"
         >
           <%= post.author.name %>
         </a>
       </strong>
-      <%= post.createdAt.toLocaleDateString() %>
+      <small class="text-muted">Posted on <%= post.createdAt.toLocaleString() %></small>
       </p>
       <p class="card-text"><%= post.text %></p>
     </div>
@@ -32,7 +32,7 @@
           class="btn btn-primary btn-sm" 
           data-bs-toggle="tooltip" 
           data-bs-placement="top" 
-          title="<%= post.likes.reduce((accum,like)=>accum+", "+like.name,"") %>"
+          title="<%= post.likes.reduce((accum,like)=>accum+like.name+", ","") %>"
           >
           <i class="far fa-thumbs-up"></i>
           Like

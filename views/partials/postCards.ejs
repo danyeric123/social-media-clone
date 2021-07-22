@@ -30,7 +30,7 @@
           class="btn btn-primary btn-sm" 
           data-bs-toggle="tooltip" 
           data-bs-placement="top" 
-          title="<%= post.likes.reduce((accum,like)=>accum+", "+like.name,"") %>"
+          title="<%= post.likes.reduce((accum,like)=>accum+like.name+", ","") %>"
           >
           <i class="far fa-thumbs-up"></i>
           Like
@@ -41,7 +41,7 @@
       <% } %> 
       <a 
         href="/posts/<%= post._id %>" 
-        class="card-text text-primary text-decoration-none"
+        class="card-text text-dark text-decoration-none"
       >
         <p class=""><%= post.text %></p>
       </a>
