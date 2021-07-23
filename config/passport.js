@@ -1,8 +1,20 @@
 import passport from 'passport'
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20'
+import { Strategy as FacebookStrategy } from 'passport-facebook'
 import { User } from '../models/user.js'
 import { Profile } from '../models/profile.js'
 
+passport.use(
+  new FacebookStrategy(
+    {
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: process.env.FACEBOOK_CALLBACK,
+    },
+    function(accessToken, refreshToken, profile, done) {
+      return done(null, profile);
+    }
+));
 passport.use(
   new GoogleStrategy(
     {

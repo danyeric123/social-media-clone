@@ -27,7 +27,8 @@
     </div>
     <%- include('../partials/likeButton',{post}) %> 
   </section>
-  
+  <div class="fb-comments" data-href="https://nagging-media.herokuapp.com/" data-width="" data-numposts="5"></div> 
+      <form action="/posts" method="POST" class="container d-flex flex-column">
   <h2 class="mb-3">All Replies</h2>
   <% post.replies.forEach(reply => { %>
     <section class="p-2 p-md-3 mb-3 rounded mx-4 border shadow-sm">

@@ -1,0 +1,26 @@
+<%- include('partials/html-head') %>
+<script src="https://cdn.socket.io/4.1.2/socket.io.min.js" integrity="sha384-toS6mmwu70G0fw54EGlWWeA4z3dyJ+dlXBtSURSKN4vyRFOcxd3Bzjj/AoOwY+Rg" crossorigin="anonymous"></script>
+<script>
+  const socket = io()
+</script>
+<%- include('partials/nav') %>
+
+<h3>Live <%= title %></h3>
+<p>Users in the room:</p>
+<!-- Notice the <ul> here that we'll be appending chatroom users to! -->
+<ul id="chatters"></ul>
+<p id="isTyping"></p>
+<div id="chatroom">
+  <% chats.forEach(c => { %>
+    <p><img id="avatarPhoto" height="30" src="<%= c.avatar %>" alt=""> <%= c.username %>: <%= c.message %> - (<%= c.createdAt.toLocaleString() %>)</p>
+  <% }) %>
+</div>
+<!-- This is where we'll loop over the chats with a forEach -->
+<input type="text" id="avatar" hidden name="avatar" value="<%= profile.avatar %>">
+<input type="text" hidden name="username" value="<%= profile.name %>" id="username">
+<input type="text" id="message">
+<a class="btn btn-info" href="#" id="send_message">Send Message</a>
+<!-- Oh, this is gonna be COOL!  We're gonna display when someone is typing! -->
+<script src='/scripts/chat.js'></script>
+
+<%- include('partials/footer') %>

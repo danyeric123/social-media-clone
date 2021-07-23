@@ -2,7 +2,7 @@
   let postDate = post.createdAt
   let difference = Date.now() - postDate
   if(difference<10000){
-    return "<1 second"
+    return "less than a second"
   }else if (difference<60000) {
     return `${Math.floor(difference/10000)} seconds`
   }else if (difference<3600000) {

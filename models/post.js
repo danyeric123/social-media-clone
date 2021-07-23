@@ -27,7 +27,7 @@ const postSchema = new Schema({
   likes: [{
     type: Schema.Types.ObjectId,
     ref: 'Profile'
-  }]
+  }],
 },{
   timestamps: true
 })

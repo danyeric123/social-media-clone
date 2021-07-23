@@ -78,7 +78,6 @@ function categoryShow(req, res) {
       .populate('author')
       .sort({createdAt: "asc"})
       .then((posts) => {
-        console.log(req.params)
         res.render('posts/index', {
           title: `Posts fof ${req.params.categoryId}`,
           posts: posts.reverse()
@@ -139,7 +138,7 @@ function edit(req, res) {
 function update(req, res) {
   Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((post) => {
-        res.redirect(`/posts`)
+        res.redirect(`/posts/${req.params.id}`)
       })
       .catch((err) => {
         console.log(err)

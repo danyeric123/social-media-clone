@@ -7,6 +7,13 @@ export {
 
 const router = Router()
 
+router.get('/facebook',passport.authenticate('facebook'));
+router.get('/facebook/callback',passport.authenticate('facebook', { failureRedirect: '/login' }),
+function(req, res) {
+   res.redirect('/');
+});
+
+
 router.get(
   '/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })

@@ -1,5 +1,4 @@
 <% posts.forEach((post, idx) => { %>
-      
   <div class="col d-flex justify-content-center">
   <div 
     class="card text-center border-primary mb-3"
@@ -11,7 +10,6 @@
           href="/profiles/<%= post.author._id %>"
           class="text-decoration-none"
         >
-          <%= post.author.name %>
           <img
             src="<%= post.author.avatar %>"
             referrerpolicy="no-referrer"
@@ -20,6 +18,7 @@
             height="35"
             width="35"
           />
+          <%= post.author.name %>
       </a>
       <%- include('./likeButton',{post}) %> 
       </div>

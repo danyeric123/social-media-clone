@@ -7,6 +7,7 @@ import session from 'express-session'
 import logger from 'morgan'
 import methodOverride from 'method-override'
 import passport from 'passport'
+import cors from 'cors'
 import * as middleware  from './middleware/middleware.js'
 
 // create the express app
@@ -33,6 +34,7 @@ app.set(
 app.set('view engine', 'ejs')
 
 // middleware
+app.use(cors())
 app.use(methodOverride('_method'))
 app.use(logger('dev'))
 app.use(express.json())

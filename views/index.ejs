@@ -1,5 +1,5 @@
 <%- include('./partials/html-head') %>
-<%- include('./partials/nav') %>
+
 
 <main>
   <div class="card text-center">
@@ -8,9 +8,15 @@
     </div>
     <div class="card-body">
       <p class="card-text">You need to sign in first to access anything</p>
-      <a href="/auth/google" class="siwg-link">
-        <button type="submit" class="siwg">
-          <img id="siwg-image" alt="Sign in with Google" />
+      <a href="/auth/google">
+        <button type="submit">
+          <span class="fa fa-google"></span> Sign in with Google
+        </button>
+      </a>
+      
+      <a href="/auth/facebook">
+        <button type="submit">
+          <span class="fa fa-facebook"></span> Sign in with Facebook
         </button>
       </a>
     </div>

@@ -9,6 +9,7 @@ export {
   unfollow, 
   edit,
   index,
+  getName,
 }
 
 function index(req, res) {
@@ -52,6 +53,17 @@ function edit(req, res) {
           console.log(err)
           res.redirect("/")
         })
+}
+
+function getName(req, res) {
+  Profile.findById(req.user.profile)
+          .then(profile=>{
+            res.json(profile.name);
+          })
+          .catch(err=>{
+            console.log(err)
+            res.redirect("/chatroom")
+          })
 }
 
 function show(req, res) {
