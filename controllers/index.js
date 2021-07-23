@@ -12,7 +12,12 @@ function search(req, res) {
   let regex = new RegExp(req.body.search)
   Profile.find ({name: { $regex: regex, $options: 'i' }})
           .then(profiles => {
-            Post.find({$or:[{text: { $regex: regex, $options: 'i' }},{categories: {$elemMatch: { $regex: regex, $options: 'i' }}}]})
+            Post.find({$or:[
+              {text: { $regex: regex, $options: 'i' }},
+              {categories: 
+                {$elemMatch: { $regex: regex, $options: 'i' }}
+              }
+            ]})
                     .then(posts=>{
                       res.render('search', {
                         title: "Search Results",

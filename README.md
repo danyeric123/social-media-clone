@@ -8,8 +8,16 @@ Nagging-Media is a social media clone where you can post, like, and comment on f
 - Mongoose
 - Node-Express
 - Socket.io
-- Bootstrap
 - Google OAuth
+- Bootstrap
+- Font Awesome
+
+<img height="80" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png">
+<img height="80" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mongodb/mongodb.png">
+<img height="80" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/express/express.png">
+<img height="80" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png">
+<img height="80" src="https://upload.wikimedia.org/wikipedia/commons/9/96/Socket-io.svg">
+<img height="80" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png">
 
 ## Getting Started:
 To see the deployed app, go to the [Heroku Link](https://nagging-media.herokuapp.com/). 
@@ -21,6 +29,10 @@ To see the deployed app, go to the [Heroku Link](https://nagging-media.herokuapp
 ERD can be found [here](https://lucid.app/lucidchart/9fce66d5-9144-4bb4-a8e4-7794cc6354d6/view?page=0_0#)
 
 Wireframe can be found [here](https://wireframe.cc/ga0Xg0)
+
+> ### Recognition:
+>Thank you to [Ben Manley](https://benmanley.biz) for his help, especially with Socket.io. \
+>And thank you to [Thiago Cavalcante](https://github.com/thiagojc89?tab=repositories) who helped me with a regex issue
 
 ## Icebox:
 1. ~~Search for posts~~
