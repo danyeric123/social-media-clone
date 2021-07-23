@@ -1,6 +1,6 @@
 # Nagging-Media
 ## Description:
-Nagging-Media is a social media clone where you can post, like, and comment on friends posts. You can also add categories to your posts and see posts based on categories. Much of the inspiration comes from Instagram and Facebook. You can also join the chatroom to chat with others.
+Nagging-Media is a social media clone where you can post, like, and comment on friends posts. You can also add categories to your posts and see posts based on categories. The search functionality is robust: You can search profiles, posts, or posts with certain categories. Much of the inspiration comes from Instagram and Facebook. You can also join the chatroom to chat with others.
 
 ## Technologies and Languages:
 - HTML/CSS/Javascript
@@ -24,8 +24,9 @@ Wireframe can be found [here](https://wireframe.cc/ga0Xg0)
 
 ## Icebox:
 1. ~~Search for posts~~
-2. ~~Only see people I follow~~
-3. ~~Able to like other people's posts~~
-4. ~~Like button displays how many likes and who liked it~~
-5. ~~Button disabled until text is entered~~
-6. Chat functionality
+2. ~~Can search based on category~~
+3. ~~Only see people I follow~~
+4. ~~Able to like other people's posts~~
+5. ~~Like button displays how many likes and who liked it~~
+6. ~~Button disabled until text is entered~~
+7. Chat functionality
