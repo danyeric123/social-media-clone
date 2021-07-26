@@ -33,6 +33,7 @@ Wireframe can be found [here](https://wireframe.cc/ga0Xg0)
 > ### Recognition:
 >Thank you to [Ben Manley](https://benmanley.biz) for his help, especially with Socket.io. \
 >And thank you to [Thiago Cavalcante](https://github.com/thiagojc89?tab=repositories) who helped me with a regex issue
+>Lastly, thank you to [Blake Romano](https://github.com/blakeromano) for being a good springboard for ideas
 
 ## Icebox:
 1. ~~Search for posts~~
