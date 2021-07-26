@@ -79,7 +79,7 @@ function categoryShow(req, res) {
       .sort({createdAt: "asc"})
       .then((posts) => {
         res.render('posts/index', {
-          title: `Posts fof ${req.params.categoryId}`,
+          title: `Posts of ${req.params.categoryId}`,
           posts: posts.reverse()
         })
       })
@@ -156,7 +156,10 @@ function likeAndUnlike(req,res){
           post.likes.remove({_id:req.user.profile._id})
           post.save()
         }
-        res.redirect(`/posts/${req.params.id}`)
+        let redirectUrl = req.body.redirectUrl == "Post Details"?
+                          `/posts/${req.params.id}`:
+                          '/posts'
+        res.redirect(redirectUrl)
       })
       .catch(err=>{
         console.log(err)

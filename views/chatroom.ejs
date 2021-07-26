@@ -11,8 +11,10 @@
 <ul id="chatters"></ul>
 <p id="isTyping"></p>
 <div id="chatroom">
-  <% chats.forEach(c => { %>
-    <p><img id="avatarPhoto" height="30" src="<%= c.avatar %>" alt=""> <%= c.username %>: <%= c.message %> - (<%= c.createdAt.toLocaleString() %>)</p>
+  <% chats.forEach(c => { %> 
+    <p>
+      <img id="avatarPhoto" height="30" src="<%= c.avatar %>" alt=""> <%= c.username %>: <%= c.message %> - (<%= c.createdAt.toLocaleString() %>)
+    </p>
   <% }) %>
 </div>
 <!-- This is where we'll loop over the chats with a forEach -->

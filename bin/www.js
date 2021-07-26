@@ -66,6 +66,7 @@ io.on('connection', socket => {
       io.emit('user-exit')
       io.emit('update-chatter-list', Object.keys(chatters).map(id => chatters[id]));
     });
+
     // When anyone sends a message, send the message to all of the connected clients and play a sound
     socket.on('new_message', (data) => {
       io.sockets.emit('new_message', {
