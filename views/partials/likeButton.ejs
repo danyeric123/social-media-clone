@@ -1,11 +1,9 @@
-<form 
+<a 
   class="float-end text-decoration-none mx-1"
-  action="/posts/<%= post._id %>/like"
-  method="POST"
+  href="/posts/<%= post._id %>/like"
 >
-  <input type="text" name="redirectUrl" value="<%= title %>" hidden>
   <button 
-    type="submit" 
+    type="button" 
     class="btn btn-primary btn-sm" 
     data-bs-toggle="tooltip" 
     data-bs-placement="top" 
@@ -15,4 +13,4 @@
     Like
     <%= post.likes.length %> 
   </button>
-</form>
+</a>
