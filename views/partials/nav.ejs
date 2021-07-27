@@ -4,7 +4,8 @@
 </head>
 <body>
   <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
-    <div
+    <div class="container-fluid">
+      <div
       class="nav-brand d-flex flex-wrap align-items-center justify-content-center"
     >
     <div class="text-end d-flex align-items-center nav-brand">
@@ -70,10 +71,19 @@
         </a>
       </li>
     </ul>
-    <div class="d-flex" style="padding-left: 15px;">
-      <form action="/search" method="POST" class="nav-item d-flex align-items-center">
+    <div class="d-flex" id="search-bar" style="padding-left: 15px;">
+      <form action="/search" method="POST" class="d-flex align-items-center">
         <input name="search" class="form-control me-2" type="search" placeholder="Search" aria-label="Search User">
         <button class="btn btn-outline-primary" type="submit">Search</button>
       </form>
+    </div>
+    <style>
+      @media screen and (min-width: 760px) {
+        #search-bar{
+          position: absolute;
+          right: 0;
+        }
+      }
+    </style>
     </div>
   </nav>

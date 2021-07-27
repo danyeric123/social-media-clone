@@ -1,10 +1,14 @@
 <%- include('../partials/html-head') %>
 <%- include('../partials/nav') %>
 
-<main class="container"> 
-    <div class="container">
+<main> 
+    <div class="container" >
       <h2 class="card-header">Write a Post</h2>
-      <form action="/posts" method="POST" class="container d-flex flex-column">
+      <form 
+        action="/posts" 
+        method="POST" 
+        class="container d-flex flex-column"
+        >
         <div class="mb-3 mx-5">
           <label for="post-content" class="form-label">Post</label>
           <textarea onkeyup="toggleButton()" class="form-control" name="text" id="post-content" rows="5"></textarea>
@@ -23,10 +27,10 @@
         </form>
     </div>
     <section>
-    <div class="container py-5 px-3">
-    <%- include('../partials/postCards') %> 
-    </div>
-  </section>
+      <div class="container py-5 px-3">
+      <%- include('../partials/postCards') %> 
+      </div>
+    </section>
   </main>
   <%- include('../partials/footer') %>
   
