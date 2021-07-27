@@ -1,3 +1,4 @@
+
 // OMG, CACHED ELEMENT REFERENCES?!?!? NO WAI!!!!
 let message = document.getElementById("message");
 let recipient = document.getElementById("recipient")
@@ -21,12 +22,25 @@ let chatters = document.getElementById("chatters");
  * info to the server
  */
 
+function sendMessage(){
+  fetch("/chatroom", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      avatar: avatar.value,
+      username: username.value,
+      message: message.value,
+    })
+  })
+}
+
 send_message.addEventListener("click", () => {
   socket.emit("new_message", {
     username: username.value,
     message: message.value,
     avatar: avatar.value,
   });
+  sendMessage()
   message.value = "";
 });
 
@@ -42,6 +56,7 @@ message.addEventListener("keypress", (e) => {
       message: message.value,
       avatar: avatar.value,
     });
+    sendMessage()
     message.value = "";
   }
 });
@@ -62,13 +77,7 @@ message.addEventListener("keypress", () => {
  * that it can be broadcast on connection
  */
  function getUserName() {
-  fetch("/profiles/getName")
-      .then(response => {
-        return response.json()
-        .then((data) => {
-          socket.emit("register-user", data);
-        });
-      });
+  socket.emit("register-user", username.value)
 }
 getUserName();
 
@@ -110,13 +119,4 @@ getUserName();
   let newMessage = document.createElement("p");
   newMessage.innerHTML = `<p><img id="avatar" height="30" src="${data.avatar}" alt=""> ${data.username}: ${data.message}</p>`;
   chatroom.append(newMessage);
-  fetch("/chatroom", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      avatar: data.avatar,
-      username: data.username,
-      message: data.message,
-    }),
-  });
 });

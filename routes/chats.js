@@ -7,5 +7,5 @@ export {
 }
 
 const router = Router()
-router.get('/', middleware.isLoggedIn, chatsCtrl.chatRoom)
-router.post('/', middleware.isLoggedIn, chatsCtrl.postChat);
+router.get('/', middleware.isLoggedIn, chatsCtrl.chatroom)
+router.post('/', middleware.isLoggedIn, chatsCtrl.addChat);

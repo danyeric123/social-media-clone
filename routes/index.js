@@ -8,6 +8,3 @@ export {
 const router = Router()
 router.get('/', (req, res)=>res.redirect('/posts'))
 router.post('/search', indexCtrl.search)
-
-router.get('/chatroom', middleware.isLoggedIn, indexCtrl.chatroom)
-router.post('/chatroom', middleware.isLoggedIn, indexCtrl.addChat)
