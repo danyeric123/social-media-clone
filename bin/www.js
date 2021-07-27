@@ -43,10 +43,11 @@ if (process.env.NODE_ENV !== 'production') {
   }
 
   server = https.createServer(options, app)
-  io = new Server(server)
 } else {
   server = http.createServer(app)
 }
+
+io = new Server(server)
 
 
 let chatters = {}
