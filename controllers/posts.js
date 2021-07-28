@@ -16,7 +16,7 @@ export {
 function index(req, res) {
   Profile.findById(req.user.profile._id)
         .then(profile=>{
-          Post.find({author:{$in:[profile.following,req.user.profile]}})
+          Post.find({author:{$in:[...profile.following,req.user.profile]}})
             .populate('author')
             .populate('likes')
             .sort({createdAt: "desc"})
