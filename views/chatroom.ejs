@@ -10,7 +10,7 @@
 <!-- Notice the <ul> here that we'll be appending chatroom users to! -->
 <ul id="chatters"></ul>
 <p id="isTyping"></p>
-<div id="chatroom">
+<div id="chatroom" style="height: 300px; overflow: scroll;">
   <% chats.forEach(c => { %> 
     <p>
       <img id="avatarPhoto" height="30" src="<%= c.avatar %>" alt=""> <%= c.username %>: <%= c.message %> - (<%= c.createdAt.toLocaleString() %>)
