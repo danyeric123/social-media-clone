@@ -22,6 +22,9 @@ Nagging-Media is a social media clone where you can post, like, and comment on f
 ## Getting Started:
 To see the deployed app, go to the [Heroku Link](https://nagging-media.herokuapp.com/). 
 
+### Screenshot
+![screenshot of app](public/images/Screen%20Shot%202021-07-29%20at%2010.16.26%20AM.png)
+
 ### Trello Board
 [My Trello Board Link](https://trello.com/b/OmXRIOit/project-2)
 
@@ -42,4 +45,4 @@ Wireframe can be found [here](https://wireframe.cc/ga0Xg0)
 4. ~~Able to like other people's posts~~
 5. ~~Like button displays how many likes and who liked it~~
 6. ~~Button disabled until text is entered~~
-7. Chat functionality
+7. ~~Chat functionality~~
