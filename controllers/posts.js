@@ -90,6 +90,7 @@ function categoryShow(req, res) {
 }
 
 function reply(req, res) {
+  console.log("ehy")
   Post.findById(req.params.id)
       .then((post)=> {
         req.body.author = req.user.profile
