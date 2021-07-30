@@ -45,7 +45,7 @@
             />
             <%= reply.author.name %>
           </a>
-         <%= reply.createdAt.toLocaleDateString() %>
+          <%= include('../partials/dateDifference.ejs', {post}) %> 
         </h4>
         <p class="lead my-3"><%= reply.text %> </p>
       </div>
