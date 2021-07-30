@@ -90,7 +90,6 @@ function categoryShow(req, res) {
 }
 
 function reply(req, res) {
-  console.log("ehy")
   Post.findById(req.params.id)
       .then((post)=> {
         req.body.author = req.user.profile
@@ -137,6 +136,7 @@ function edit(req, res) {
 }
 
 function update(req, res) {
+  req.body.categories=req.body.categories.split("; ")
   Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
       .then((post) => {
         res.redirect(`/posts/${req.params.id}`)
