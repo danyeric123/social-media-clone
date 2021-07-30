@@ -44,10 +44,14 @@ function search(req, res) {
 function edit(req, res) {
   Profile.findById(req.params.id)
         .then(profile => {
-          res.render('profiles/edit', {
-            title: `Editing ${profile.name}'s profile`,
-            profile
-          })
+          if(req.user.profile.equals(req.params.id)){
+            res.render('profiles/edit', {
+              title: `Editing ${profile.name}'s profile`,
+              profile
+            })
+          }else{
+            res.redirect(`/profiles/${profile._id}`)
+          }
         })
         .catch((err) => {
           console.log(err)
