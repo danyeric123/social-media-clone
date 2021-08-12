@@ -6,6 +6,7 @@ export {
   search,
 }
 
+// This searches all the profiles or posts with the given query using the query as a regex
 function search(req, res) {
   let regex = new RegExp(req.body.search)
   Profile.find ({name: { $regex: regex, $options: 'i' }})

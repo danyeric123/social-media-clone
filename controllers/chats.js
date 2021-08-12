@@ -6,6 +6,7 @@ export {
   addChat
 }
 
+// Add a chat message
 function addChat(req, res) {
   Chat.create(req.body)
   .then(()=> {
@@ -13,6 +14,7 @@ function addChat(req, res) {
   })
 }
 
+// This pulls all the messages from the chatroom
 function chatroom(req, res) {
   Profile.findById(req.user.profile._id)
   .then(profile => {

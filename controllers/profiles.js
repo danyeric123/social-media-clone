@@ -12,6 +12,7 @@ export {
   getName,
 }
 
+// Get all profiles on database
 function index(req, res) {
   Profile.find({})
           .then(profiles => {
@@ -26,6 +27,7 @@ function index(req, res) {
           })
 }
 
+// Search for profile
 function search(req, res) {
   let regex = new RegExp(req.body.search)
   Profile.find({name: { $regex: regex, $options: 'i' }})
@@ -41,6 +43,7 @@ function search(req, res) {
           })
 }
 
+// Get the user profile and give them the form to edit it
 function edit(req, res) {
   Profile.findById(req.params.id)
         .then(profile => {
@@ -59,6 +62,7 @@ function edit(req, res) {
         })
 }
 
+// Get the user's name
 function getName(req, res) {
   Profile.findById(req.user.profile)
           .then(profile=>{
@@ -70,6 +74,7 @@ function getName(req, res) {
           })
 }
 
+//Show the profile given an id
 function show(req, res) {
   Profile.findById(req.params.id)
         .populate("following")
@@ -94,6 +99,7 @@ function show(req, res) {
         })
 }
 
+//Update the profile given an id
 function update(req, res) {
   Profile.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then((profile) => {
@@ -105,6 +111,7 @@ function update(req, res) {
         })
 }
 
+// Follow the profile given the id
 function follow(req, res) {
   Profile.findById(req.user.profile)
           .then(followerProfile => {
@@ -125,6 +132,7 @@ function follow(req, res) {
           })
 }
 
+// Unfollow the profile given the id
 function unfollow(req, res) {
   Profile.findById(req.user.profile)
         .then(followerProfile => {

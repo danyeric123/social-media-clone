@@ -13,6 +13,8 @@ export {
   likeAndUnlike,
 }
 
+//Pulls the person's profile and then all the posts written either by the owner
+// or the people the profile follows in descending order
 function index(req, res) {
   Profile.findById(req.user.profile._id)
         .then(profile=>{
@@ -33,6 +35,8 @@ function index(req, res) {
         })
 }
 
+
+//Creates a post with given categories that are seperated by semicolon
 function create(req, res) {
   req.body.author = req.user.profile
   req.body.categories=req.body.categories.split("; ")
@@ -51,6 +55,8 @@ function create(req, res) {
       })
 }
 
+
+//Shows a given posts and its replies
 function show(req, res) {
   Post.findById(req.params.id)
       .populate('author')
@@ -73,6 +79,8 @@ function show(req, res) {
       })
 }
 
+
+//Shows the posts of a give category given the category id
 function categoryShow(req, res) {
   Post.find({categories:req.params.categoryId})
       .populate('author')
@@ -89,6 +97,7 @@ function categoryShow(req, res) {
       })
 }
 
+//Reply to a post and pushes the reply to the replies array in post model instance
 function reply(req, res) {
   Post.findById(req.params.id)
       .then((post)=> {
@@ -105,6 +114,9 @@ function reply(req, res) {
       })
 }
 
+
+//Find the author of the post and then remove the post from the author
+// Then remove the post from the database
 function deletePost(req,res){
   Profile.findById(req.params.profileId)
         .then((profile) => {
@@ -121,6 +133,7 @@ function deletePost(req,res){
         })
 }
 
+// Edit the post
 function edit(req, res) {
   Post.findById(req.params.id)
       .then(post => {
@@ -135,6 +148,7 @@ function edit(req, res) {
       })
 }
 
+//Find and update the post
 function update(req, res) {
   req.body.categories=req.body.categories.split("; ")
   Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
@@ -147,6 +161,7 @@ function update(req, res) {
       })
 }
 
+//Like or unlike the post depending on whether the person liked already the post
 function likeAndUnlike(req,res){
   Post.findById(req.params.id)
       .then(post=>{
